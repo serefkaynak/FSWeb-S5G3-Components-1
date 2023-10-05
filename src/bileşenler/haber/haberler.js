@@ -90,6 +90,27 @@ const data = [
   },
 ];
 
+function addHaber() {
+  data.push({
+    baslik: "React vs Angular",
+    tarih: "9 Kasım 2022",
+    ilkParagraf: `Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ivysaur Lorem ipsum dolor sit amet, consectetur adipiscing
+        elit. Venusaur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Charmander Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit. Charmeleon Lorem ipsum dolor sit amet, consectetur adipiscing elit. Charizard Lorem ipsum dolor sit amet,
+        consectetur adipiscing elit. Squirtle Lorem ipsum dolor sit amet, consectetur adipiscing elit. Wartortle Lorem ipsum dolor
+        sit amet, consectetur adipiscing elit. Blastoise Lorem ipsum dolor sit amet, consectetur adipiscing elit. Caterpie Lorem `,
+      ikinciParagraf: `Pidgey Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pidgeotto Lorem ipsum dolor sit amet, consectetur adipiscing
+        elit. Pidgeot Lorem ipsum dolor sit amet, consectetur adipiscing elit. Rattata Lorem ipsum dolor sit amet, consectetur adipiscing
+        elit. Raticate Lorem ipsum dolor sit amet, consectetur adipiscing elit. Spearow Lorem ipsum dolor sit amet, consectetur adipiscing
+        elit. Fearow Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ekans Lorem ipsum dolor sit amet, consectetur adipiscing`,
+      ucuncuParagraf: `Gotta catch 'em all Horsea gym Ninjask Absol Sinnoh Poliwag. Gotta catch 'em all Youngster wants to fight Soda Pop Floatzel
+        Leech Life Seismitoad Ariados. Earthquake Pokemon Glitch City Tail Whip Skitty Ekans Dialga. Ut aliquip ex ea commodo consequat James
+        Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous.`,
+
+  });
+
+}
+
 /*
   Adım 1: Haber oluşturmak için 'haberYapici' adında bir bileşen(component) oluşturun.
   Bileşeniniz, argümanı haberleri içeren dizi olarak alan bir fonksiyon olacak,
@@ -103,15 +124,49 @@ const data = [
 
     <button class="expandButton">+</button>
   </div>
+*/
+function haberYapici(haber) {
+  return `<div class="article">
+      <h2>${haber.baslik}</h2>
+      <p class="tarih">${haber.tarih}</p>
 
+      <p>${haber.ilkParagraf}</p>
+      <p>${haber.ikinciParagraf}</p>
+      <p>${haber.ucuncuParagraf}</p>
+
+      <button class="expandButton">+</button>
+  </div>`;
+}
+
+const articles = document.querySelector(".articles");
+addHaber();
+data.forEach((i) => {
+  articles.innerHTML += haberYapici(i);
+}
+);
+
+
+/*
   Adım 2: Hala `haberYapici` içindeyiz, button.expandButton 'a bir click event dinleyici ekleyin.
   Bu dinleyici div.article öğesine 'article-open' class'ını ekleyip/çıkaracak (toogle).
+*/
+const expandButtons = document.querySelectorAll(".expandButton");
+expandButtons.forEach((i) => {
+  i.addEventListener("click", () => {
+    i.parentElement.classList.toggle("article-open");
+  });
+}
+);
 
-  Adım 3: Fonksiyonunuzdan bir öğe döndürmeyi unutmayın.
 
+ // Adım 3: Fonksiyonunuzdan bir öğe döndürmeyi unutmayın.
+
+/*
   Adım 4: Fonksiyonunuzun dışında, tüm datayı döngüye sokun(loop). Bir div.article öğesi oluşturmak ve bunu div.articles içindeki DOM'a eklemek için
   her yinelemede oluşturduğunuz bileşeninizi kullanacaksınız(bknz. index.html).
+*/
 
-  Adım 5: Veri dizisine yeni haber nesnesi eklemeyi deneyin. Diğer verilerle aynı yapıda olmasına dikkat edin.
+/*
+  Adım 5: Data Veri dizisine yeni "lorem ipsum içerikli veri eklemeyi deneyin. Diğer verilerle aynı yapıda olmasına dikkat edin.
   Eklediğiniz yeni haberi görmek için sayfayı yenileyin.
 */
