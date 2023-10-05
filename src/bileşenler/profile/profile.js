@@ -28,7 +28,16 @@ let menuElemanlari = [
   
   //  Adım 4: Menü butonuna bir `click` event dinleyicisi ekleyin. Butona her tıklanıldığında div.menu classına `menu--open`('menu' class'ına sahip olan div) ekleyip/silecek(toogle).
     menuButton.addEventListener('click', () => {
-      menuDiv.classList.toggle('profile--open');
+      if (menuDiv.classList.contains('profile--open')) {
+        menuDiv.classList.add("out");
+        setTimeout(() => { 
+          menuDiv.classList.remove("out"); 
+          menuDiv.classList.remove('profile--open'); 
+         }, 300);
+      }
+      else {
+        menuDiv.classList.add('profile--open');
+      }
     });
   
   //  Adım 5: Oluşturulan div.menu 'yü döndürmeyi unutmayın.
